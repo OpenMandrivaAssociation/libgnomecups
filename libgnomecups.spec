@@ -1,11 +1,16 @@
+%define name libgnomecups
+%define version 0.2.2
+%define release %mkrel 3
+
 %define api_version 1.0
-%define lib_name %mklibname gnomecups-%{api_version}_ %{lib_major}
-%define lib_major 1
+%define major 1
+%define libname %mklibname gnomecups-%{api_version}_ %{major}
+%define develname %mklibname gnomecups-%{api_version} -d
 
 Summary: GNOME library for CUPS integration
-Name: libgnomecups
-Version: 0.2.2
-Release: %mkrel 3
+Name: %{name}
+Version: %{version}
+Release: %{release}
 License: LGPL
 Group: System/Libraries
 URL: http://www.gnome.org/
@@ -18,22 +23,23 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 %description
 GNOME library for CUPS integration
 
-%package -n %{lib_name}
+%package -n %{libname}
 Summary: GNOME library for CUPS integration
 Group: System/Libraries
 Requires: %{name} = %{version}-%{release}
 
-%description -n %{lib_name}
+%description -n %{libname}
 GNOME library for CUPS integration
 
-%package -n %{lib_name}-devel
+%package -n %{develname}
 Summary: GNOME library for CUPS integration
 Group: Development/GNOME and GTK+
-Requires: %{lib_name} = %{version}-%{release}
+Requires: %{libname} = %{version}-%{release}
 Provides: %{name}-devel = %{version}-%{release}
 Provides: %{name}-%{api_version}-devel = %{version}-%{release}
+Obsoletes: %{mklibname gnomecups-%{api_version}_ 1 -d}
 
-%description -n %{lib_name}-devel
+%description -n %{develname}
 GNOME library for CUPS integration
 
 %prep
@@ -55,19 +61,19 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post -p /sbin/ldconfig -n %{lib_name}
+%post -p /sbin/ldconfig -n %{libname}
 
-%postun -p /sbin/ldconfig -n %{lib_name}
+%postun -p /sbin/ldconfig -n %{libname}
 
 %files -f %{name}.lang
 %defattr(-,root,root,-)
 %doc ChangeLog NEWS AUTHORS
 
-%files -n %{lib_name}
+%files -n %{libname}
 %defattr(-,root,root,-)
 %{_libdir}/*.so.*
 
-%files -n %{lib_name}-devel
+%files -n %{develname}
 %defattr(-,root,root,-)
 %{_libdir}/pkgconfig/*
 %{_includedir}/*
