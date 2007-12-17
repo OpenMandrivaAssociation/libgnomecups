@@ -37,7 +37,6 @@ BuildRequires: perl-XML-Parser
 BuildRequires: dbus-glib-devel
 BuildRequires: intltool
 BuildRequires: gnome-common
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 GNOME library for CUPS integration
