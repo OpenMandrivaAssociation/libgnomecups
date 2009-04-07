@@ -27,6 +27,7 @@ Patch5: libgnomecups-0.2.2-fix-islocal.patch
 Patch6: libgnomecups-0.2.2-ignore-ipp-not-found.patch
 # (fc) 0.2.2-4mdv allow to change some cups printer attributes (ubuntu)
 Patch7: libgnomecups-0.2.2-replace-set-printer-attrs.patch
+Patch8: libgnomecups-0.2.3-fix-str-fmt.patch
 BuildRequires: cups-devel cups-common
 BuildRequires: glib2-devel
 BuildRequires: perl-XML-Parser
@@ -65,12 +66,10 @@ GNOME library for CUPS integration
 %patch5 -p1 -b .fix-is-local
 %patch6 -p1 -b .ignore-ipp-not-found
 %patch7 -p1 -b .replace-set-printer-attrs
-
-#needed by patch3
-autoreconf
+%patch8 -p0 -b .str
 
 %build
-
+autoreconf -fi
 %configure2_5x --with-dbus=yes
 
 %make
