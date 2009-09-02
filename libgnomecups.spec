@@ -1,6 +1,6 @@
 %define name libgnomecups
 %define version 0.2.3
-%define release %mkrel 3
+%define release %mkrel 4
 
 %define api_version 1.0
 %define major 1
