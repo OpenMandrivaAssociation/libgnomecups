@@ -1,16 +1,12 @@
-%define name libgnomecups
-%define version 0.2.3
-%define release %mkrel 7
-
-%define api_version 1.0
+%define api 1.0
 %define major 1
-%define libname %mklibname gnomecups-%{api_version}_ %{major}
-%define develname %mklibname gnomecups-%{api_version} -d
+%define libname %mklibname gnomecups-%{api}_ %{major}
+%define develname %mklibname gnomecups-%{api} -d
 
 Summary: GNOME library for CUPS integration
-Name: %{name}
-Version: %{version}
-Release: %{release}
+Name: libgnomecups
+Version: 0.2.3
+Release: 8
 License: LGPL
 Group: System/Libraries
 URL: http://www.gnome.org/
@@ -28,13 +24,16 @@ Patch6: libgnomecups-0.2.2-ignore-ipp-not-found.patch
 # (fc) 0.2.2-4mdv allow to change some cups printer attributes (ubuntu)
 Patch7: libgnomecups-0.2.2-replace-set-printer-attrs.patch
 Patch8: libgnomecups-0.2.3-fix-str-fmt.patch
-BuildRequires: cups-devel cups-common
+# glib2.0  2.31.x compat patch
+Patch9:	libgnomecups-0.2.3_glib_h.patch
+
+BuildRequires: cups-devel
+BuildRequires: cups-common
 BuildRequires: glib2-devel
 BuildRequires: perl-XML-Parser
 BuildRequires: dbus-glib-devel
 BuildRequires: intltool
 BuildRequires: gnome-common
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 GNOME library for CUPS integration
@@ -42,7 +41,7 @@ GNOME library for CUPS integration
 %package -n %{libname}
 Summary: GNOME library for CUPS integration
 Group: System/Libraries
-Requires: %{name} = %{version}-%{release}
+Suggests: %{name} = %{version}-%{release}
 
 %description -n %{libname}
 GNOME library for CUPS integration
@@ -52,25 +51,20 @@ Summary: GNOME library for CUPS integration
 Group: Development/GNOME and GTK+
 Requires: %{libname} = %{version}-%{release}
 Provides: %{name}-devel = %{version}-%{release}
-Provides: %{name}-%{api_version}-devel = %{version}-%{release}
-Obsoletes: %{mklibname gnomecups-%{api_version}_ 1 -d}
+Obsoletes: %{mklibname gnomecups-%{api}_ 1 -d}
 
 %description -n %{develname}
 GNOME library for CUPS integration
 
 %prep
 %setup -q
-%patch1 -p1 -b .callbackfix
-%patch3 -p1 -b .dbus
-%patch4 -p1 -b .parse-dot-cups-loptions
-%patch5 -p1 -b .fix-is-local
-%patch6 -p1 -b .ignore-ipp-not-found
-%patch7 -p1 -b .replace-set-printer-attrs
-%patch8 -p0 -b .str
+%apply_patches
 
 %build
 autoreconf -fi
-%configure2_5x --with-dbus=yes
+%configure2_5x \
+	--disable-static \
+	--with-dbus=yes
 
 %make
 
@@ -81,29 +75,13 @@ rm -rf %{buildroot}
 
 %find_lang %{name}
 
-%clean
-rm -rf %{buildroot}
-
-%if %mdkversion < 200900
-%post -p /sbin/ldconfig -n %{libname}
-%endif
-
-%if %mdkversion < 200900
-%postun -p /sbin/ldconfig -n %{libname}
-%endif
-
 %files -f %{name}.lang
-%defattr(-,root,root,-)
 %doc ChangeLog NEWS AUTHORS
 
 %files -n %{libname}
-%defattr(-,root,root,-)
-%{_libdir}/*.so.*
+%{_libdir}/libgnomecups-%{api}.so.%{major}*
 
 %files -n %{develname}
-%defattr(-,root,root,-)
 %{_libdir}/pkgconfig/*
 %{_includedir}/*
-%{_libdir}/*.a
-%{_libdir}/*.la
 %{_libdir}/*.so
