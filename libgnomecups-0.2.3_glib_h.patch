@@ -1,0 +1,21 @@
+--- libgnomecups-0.2.3/libgnomecups/gnome-cups-init.h~	2007-01-01 17:18:51.000000000 -0700
++++ libgnomecups-0.2.3/libgnomecups/gnome-cups-init.h	2011-12-23 11:43:00.091618914 -0700
+@@ -1,8 +1,7 @@
+ #ifndef GNOME_CUPS_INIT
+ #define GNOME_CUPS_INIT
+ 
+-#include <glib/gtypes.h>
+-#include <glib/gmacros.h>
++#include <glib.h>
+ 
+ G_BEGIN_DECLS
+ 
+--- libgnomecups-0.2.3/libgnomecups/gnome-cups-i18n.c~	2007-01-01 17:18:51.000000000 -0700
++++ libgnomecups-0.2.3/libgnomecups/gnome-cups-i18n.c	2011-12-23 11:43:16.173868796 -0700
+@@ -1,5 +1,5 @@
+ #include <config.h>
+-#include <glib/gmacros.h>
++#include <glib.h>
+ #include "gnome-cups-i18n.h"
+ 
+ #ifdef ENABLE_NLS
