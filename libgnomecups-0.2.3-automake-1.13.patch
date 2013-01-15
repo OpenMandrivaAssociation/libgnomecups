@@ -1,0 +1,11 @@
+--- libgnomecups-0.2.3/configure.in.bero	2013-01-15 23:34:29.399878017 +0100
++++ libgnomecups-0.2.3/configure.in	2013-01-15 23:34:35.526807546 +0100
+@@ -3,7 +3,7 @@ AC_INIT(libgnomecups, 0.2.3)
+ AC_CONFIG_SRCDIR(libgnomecups/gnome-cups-printer.c)
+ 
+ AM_INIT_AUTOMAKE
+-AM_CONFIG_HEADER(config.h)
++AC_CONFIG_HEADERS([config.h])
+ AM_MAINTAINER_MODE
+ 
+ AC_SUBST(ACLOCAL_AMFLAGS, "\${ACLOCAL_FLAGS}")
