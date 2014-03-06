@@ -8,7 +8,7 @@
 Summary:	GNOME library for CUPS integration
 Name:		libgnomecups
 Version:	0.2.3
-Release:	12
+Release:	13
 License:	LGPLv2
 Group:		System/Libraries
 Url:		http://www.gnome.org/
@@ -29,6 +29,8 @@ Patch8:		libgnomecups-0.2.3-fix-str-fmt.patch
 # glib2.0  2.31.x compat patch
 Patch9:		libgnomecups-0.2.3_glib_h.patch
 Patch10:	libgnomecups-0.2.3-automake-1.13.patch
+Patch11:	libgnomecups-lpoptions.patch
+Patch12:	libgnomecups-0.2.3-cups-1.6.patch
 
 BuildRequires:	cups-common
 BuildRequires:	gnome-common
