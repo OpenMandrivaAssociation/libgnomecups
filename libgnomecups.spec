@@ -11,7 +11,7 @@ Version:	0.2.3
 Release:	21
 License:	LGPLv2
 Group:		System/Libraries
-Url:		http://www.gnome.org/
+Url:		https://www.gnome.org/
 Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/libgnomecups/%{url_ver}/%{name}-%{version}.tar.bz2
 # (fc) 0.2.2-4mdv fix cups callback for authentication (SUSE)
 Patch1:		libgnomecups-0.2.2-callbackfix.patch
