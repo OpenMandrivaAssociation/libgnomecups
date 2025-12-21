@@ -32,6 +32,11 @@ Patch10:	libgnomecups-0.2.3-automake-1.13.patch
 Patch11:	libgnomecups-lpoptions.patch
 Patch12:	libgnomecups-0.2.3-cups-1.6.patch
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	pkgconfig(com_err)
 BuildRequires:	pkgconfig(mit-krb5-gssapi)
 BuildRequires:	pkgconfig(mit-krb5)
